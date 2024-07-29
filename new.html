@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmaps - Student Score Analysis Dashboard</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="index.html">Student Score Analysis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gender_analysis.html">Gender Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="score_distribution.html">Score Distribution</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="parent_education.html">Parent Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="lunch_type.html">Lunch Type</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="study_hours.html">Study Hours</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="heatmaps.html">Heatmaps</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <header>
+        <h1><i class="fa fa-chart-pie"></i> Heatmaps</h1>
+    </header>
+    <main>
+        <section id="heatmaps" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Correlation Heatmaps</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="heatmap1"></canvas>
+                        <p><strong>Heatmap 1:</strong> This heatmap shows the correlation between various factors in the dataset. Darker colors indicate stronger correlations. For example, we can see a strong correlation between reading scores and writing scores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Student Score Analysis</p>
+    </footer>
+    <script>
+        // Fetch correlation data
+        fetch('data/correlation_matrix.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Fetched Data:", data); // Debug: Log fetched data
+                // Process the JSON data
+                const labels = Object.keys(data);
+                const datasets = [{
+                    label: 'Correlation Heatmap',
+                    data: [],
+                    backgroundColor: []
+                }];
+                
+                labels.forEach((label, xIndex) => {
+                    labels.forEach((innerLabel, yIndex) => {
+                        const value = data[label][innerLabel];
+                        datasets[0].data.push({
+                            x: xIndex,
+                            y: yIndex,
+                            r: Math.abs(value) * 20, // Bubble size proportional to correlation strength
+                            v: value
+                        });
+                        const colorValue = Math.floor((1 - Math.abs(value)) * 255);
+                        datasets[0].backgroundColor.push(`rgba(${colorValue}, ${colorValue}, 255, 0.6)`);
+                    });
+                });
+
+                const heatmapData = {
+                    labels: labels,
+                    datasets: datasets
+                };
+
+                const heatmapOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'category',
+                            labels: labels,
+                            beginAtZero: true
+                        },
+                        y: {
+                            type: 'category',
+                            labels: labels,
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw.v.toFixed(2);
+                                    return `Correlation: ${value}`;
+                                }
+                            }
+                        }
+                    }
+                };
+
+                function createHeatmap(ctx, data, options) {
+                    new Chart(ctx, {
+                        type: 'bubble',
+                        data: data,
+                        options: options
+                    });
+                }
+
+                createHeatmap(document.getElementById('heatmap1').getContext('2d'), heatmapData, heatmapOptions);
+            })
+            .catch(error => {
+                console.error('Error fetching or processing data:', error); // Debug: Log errors
+            });
+    </script>
+</body>
+</html>

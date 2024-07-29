@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Score Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Save this as navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="index.html">Student Score Analysis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pie Charts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="lunch_type.html">Lunch Type</a>
+                    <a class="dropdown-item" href="ethnic_group.html">Ethnic Group</a>
+                    <a class="dropdown-item" href="parent_education.html">Parent Education</a>
+                    <a class="dropdown-item" href="sports_practice.html">Sports Practice</a>
+                    <a class="dropdown-item" href="study_hours.html">Study Hours</a>
+                    <a class="dropdown-item" href="siblings.html">Number of Siblings</a>
+                    <a class="dropdown-item" href="parent_marital_status.html">Parent Marital Status</a>
+                    <a class="dropdown-item" href="test_preparation.html">Test Preparation</a>
+                    <a class="dropdown-item" href="first_child_scenario.html">First Child Scenario</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="gender_analysis.html">Gender Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="score_distribution.html">Score Distribution</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="heatmaps.html">Heatmaps</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <header>
+        <h1><i class="fa fa-bar-chart"></i> Student Score Analysis Dashboard</h1>
+    </header>
+    <main>
+        <section id="introduction" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Introduction</h2>
+                </div>
+                <div class="card-body">
+                    <p>This project analyzes student scores considering various demographic and socio-economic factors. The goal is to understand how these factors influence student performance.</p>
+                    <p>The dataset includes information on students' gender, ethnic group, parents' education level, lunch type, test preparation, and scores in mathematics, reading, and writing. By analyzing this data, we aim to uncover patterns and insights that can help educators and policymakers improve student outcomes.</p>
+                </div>
+            </div>
+        </section>
+        <section id="overview" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Project Overview</h2>
+                </div>
+                <div class="card-body">
+                    <p>This dashboard provides an interactive and comprehensive analysis of student performance. Key areas of focus include:</p>
+                    <ul>
+                        <li>Gender distribution and its impact on scores</li>
+                        <li>Score distribution in mathematics, reading, and writing</li>
+                        <li>Influence of parents' education level on student performance</li>
+                        <li>Impact of lunch type on scores</li>
+                        <li>Distribution of weekly study hours</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="highlights" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Highlights</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3><i class="fa fa-male"></i> Gender Analysis</h3>
+                                    <p>Explore the distribution of gender among students and its impact on performance.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3><i class="fa fa-book"></i> Score Distribution</h3>
+                                    <p>Analyze the scores in mathematics, reading, and writing to understand performance trends.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3><i class="fa fa-graduation-cap"></i> Parent Education</h3>
+                                    <p>Investigate how parents' education levels influence student outcomes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3><i class="fa fa-cutlery"></i> Lunch Type</h3>
+                                    <p>Examine the impact of lunch type on student performance.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3><i class="fa fa-clock-o"></i> Study Hours</h3>
+                                    <p>Understand the distribution of weekly study hours among students.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3><i class="fa fa-chart-pie"></i> Heatmaps</h3>
+                                    <p>Visualize correlations between different factors using heatmaps.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Student Score Analysis</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

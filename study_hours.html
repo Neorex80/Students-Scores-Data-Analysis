@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Hours Analysis - Student Score Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Save this as navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="index.html">Student Score Analysis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pie Charts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="lunch_type.html">Lunch Type</a>
+                    <a class="dropdown-item" href="ethnic_group.html">Ethnic Group</a>
+                    <a class="dropdown-item" href="parent_education.html">Parent Education</a>
+                    <a class="dropdown-item" href="sports_practice.html">Sports Practice</a>
+                    <a class="dropdown-item" href="study_hours.html">Study Hours</a>
+                    <a class="dropdown-item" href="siblings.html">Number of Siblings</a>
+                    <a class="dropdown-item" href="parent_marital_status.html">Parent Marital Status</a>
+                    <a class="dropdown-item" href="test_preparation.html">Test Preparation</a>
+                    <a class="dropdown-item" href="first_child_scenario.html">First Child Scenario</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="gender_analysis.html">Gender Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="score_distribution.html">Score Distribution</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="heatmaps.html">Heatmaps</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <header>
+        <h1><i class="fa fa-clock-o"></i> Study Hours Analysis</h1>
+    </header>
+    <main>
+        <section id="study-hours-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Distribution of Weekly Study Hours</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="studyHoursChart"></canvas>
+                    </div>
+                    <p><strong>Distribution of Weekly Study Hours:</strong> This pie chart illustrates the weekly study hours of students. The data indicates that a majority of students, about 55%, study for 5 to 10 hours per week. Approximately 28% of students study for less than 5 hours, while 18% study for more than 10 hours per week. Understanding this distribution helps in identifying study habits and can inform strategies to encourage effective study practices.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Student Score Analysis</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('studyHoursChart').getContext('2d');
+            var studyHoursChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Less than 5 hours', '5 to 10 hours', 'Greater than 10 hours'],
+                    datasets: [{
+                        label: 'Distribution of Weekly Study Hours',
+                        data: [27.75, 54.73, 17.52],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

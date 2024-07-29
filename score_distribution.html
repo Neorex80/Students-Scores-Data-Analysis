@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Analysis - Student Score Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot"></script> <!-- Boxplot plugin -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            })
+            .then(() => {
+                const script = document.createElement('script');
+                script.src = 'https://code.jquery.com/jquery-3.5.1.slim.min.js';
+                document.body.appendChild(script);
+
+                const popper = document.createElement('script');
+                popper.src = 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js';
+                document.body.appendChild(popper);
+
+                const bootstrap = document.createElement('script');
+                bootstrap.src = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js';
+                document.body.appendChild(bootstrap);
+            });
+    </script>
+    <header>
+        <h1><i class="fa fa-male"></i> Gender Analysis</h1>
+    </header>
+    <main>
+        <section id="gender-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Gender Distribution</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="genderDistributionChart"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Gender Distribution:</strong> This chart shows the distribution of gender among the students. We observe that the number of female and male students is nearly equal, indicating a balanced gender representation in the dataset.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="gender-score-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Score Distribution by Gender</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <canvas id="mathScoreGenderChart"></canvas>
+                            <p><strong>Math Scores:</strong> This chart shows the distribution of math scores by gender.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <canvas id="readingScoreGenderChart"></canvas>
+                            <p><strong>Reading Scores:</strong> This chart shows the distribution of reading scores by gender.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <canvas id="writingScoreGenderChart"></canvas>
+                            <p><strong>Writing Scores:</strong> This chart shows the distribution of writing scores by gender.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Student Score Analysis</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx1 = document.getElementById('genderDistributionChart').getContext('2d');
+            var genderDistributionChart = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Female', 'Male'],
+                    datasets: [{
+                        label: 'Number of Students',
+                        data: [15424, 15217],
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx2 = document.getElementById('mathScoreGenderChart').getContext('2d');
+            var mathScoreGenderChart = new Chart(ctx2, {
+                type: 'boxplot',
+                data: {
+                    labels: ['Female', 'Male'],
+                    datasets: [{
+                        label: 'Math Scores',
+                        data: [
+                            {min: 45, q1: 50, median: 70, q3: 85, max: 100}, // Example data for female
+                            {min: 40, q1: 45, median: 65, q3: 80, max: 95},  // Example data for male
+                        ],
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx3 = document.getElementById('readingScoreGenderChart').getContext('2d');
+            var readingScoreGenderChart = new Chart(ctx3, {
+                type: 'boxplot',
+                data: {
+                    labels: ['Female', 'Male'],
+                    datasets: [{
+                        label: 'Reading Scores',
+                        data: [
+                            {min: 50, q1: 60, median: 75, q3: 90, max: 100}, // Example data for female
+                                                        {min: 45, q1: 55, median: 70, q3: 85, max: 95},  // Example data for male
+                        ],
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx4 = document.getElementById('writingScoreGenderChart').getContext('2d');
+            var writingScoreGenderChart = new Chart(ctx4, {
+                type: 'boxplot',
+                data: {
+                    labels: ['Female', 'Male'],
+                    datasets: [{
+                        label: 'Writing Scores',
+                        data: [
+                            {min: 55, q1: 65, median: 80, q3: 90, max: 100}, // Example data for female
+                            {min: 50, q1: 60, median: 75, q3: 85, max: 95},  // Example data for male
+                        ],
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+
+

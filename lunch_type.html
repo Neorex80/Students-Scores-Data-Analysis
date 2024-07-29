@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch Type Analysis - Student Score Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Save this as navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="index.html">Student Score Analysis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pie Charts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="lunch_type.html">Lunch Type</a>
+                    <a class="dropdown-item" href="ethnic_group.html">Ethnic Group</a>
+                    <a class="dropdown-item" href="parent_education.html">Parent Education</a>
+                    <a class="dropdown-item" href="sports_practice.html">Sports Practice</a>
+                    <a class="dropdown-item" href="study_hours.html">Study Hours</a>
+                    <a class="dropdown-item" href="siblings.html">Number of Siblings</a>
+                    <a class="dropdown-item" href="parent_marital_status.html">Parent Marital Status</a>
+                    <a class="dropdown-item" href="test_preparation.html">Test Preparation</a>
+                    <a class="dropdown-item" href="first_child_scenario.html">First Child Scenario</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="gender_analysis.html">Gender Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="score_distribution.html">Score Distribution</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="heatmaps.html">Heatmaps</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <header>
+        <h1><i class="fa fa-cutlery"></i> Lunch Type Analysis</h1>
+    </header>
+    <main>
+        <section id="lunch-type-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Distribution of Lunch Type</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="lunchTypeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="math-score-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Math Score Distribution by Lunch Type</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="mathScoreChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reading-score-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Reading Score Distribution by Lunch Type</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="readingScoreChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="writing-score-distribution" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Writing Score Distribution by Lunch Type</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="writingScoreChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add other sections for the remaining charts -->
+
+    </main>
+    <footer>
+        <p>© 2024 Student Score Analysis</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx1 = document.getElementById('lunchTypeChart').getContext('2d');
+            var lunchTypeChart = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Distribution of Lunch Type',
+                        data: [64.96, 35.04],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            var ctx2 = document.getElementById('mathScoreChart').getContext('2d');
+            var mathScoreChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Math Scores',
+                        data: [70, 60], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx3 = document.getElementById('readingScoreChart').getContext('2d');
+            var readingScoreChart = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Reading Scores',
+                        data: [75, 65], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx4 = document.getElementById('writingScoreChart').getContext('2d');
+            var writingScoreChart = new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                                        labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Writing Scores',
+                        data: [80, 70], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Add more charts here, adjust IDs and data as necessary
+
+            var ctx5 = document.getElementById('chart5').getContext('2d');
+            var chart5 = new Chart(ctx5, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 5',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Repeat for remaining charts up to chart11
+
+            var ctx6 = document.getElementById('chart6').getContext('2d');
+            var chart6 = new Chart(ctx6, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 6',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx7 = document.getElementById('chart7').getContext('2d');
+            var chart7 = new Chart(ctx7, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 7',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx8 = document.getElementById('chart8').getContext('2d');
+            var chart8 = new Chart(ctx8, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 8',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx9 = document.getElementById('chart9').getContext('2d');
+            var chart9 = new Chart(ctx9, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 9',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx10 = document.getElementById('chart10').getContext('2d');
+            var chart10 = new Chart(ctx10, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 10',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx11 = document.getElementById('chart11').getContext('2d');
+            var chart11 = new Chart(ctx11, {
+                type: 'bar', // Example chart type
+                data: {
+                    labels: ['Standard', 'Free/Reduced'],
+                    datasets: [{
+                        label: 'Chart 11',
+                        data: [50, 50], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
+

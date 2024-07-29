@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmaps - Student Score Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Save this as navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="index.html">Student Score Analysis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pie Charts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="lunch_type.html">Lunch Type</a>
+                    <a class="dropdown-item" href="ethnic_group.html">Ethnic Group</a>
+                    <a class="dropdown-item" href="parent_education.html">Parent Education</a>
+                    <a class="dropdown-item" href="sports_practice.html">Sports Practice</a>
+                    <a class="dropdown-item" href="study_hours.html">Study Hours</a>
+                    <a class="dropdown-item" href="siblings.html">Number of Siblings</a>
+                    <a class="dropdown-item" href="parent_marital_status.html">Parent Marital Status</a>
+                    <a class="dropdown-item" href="test_preparation.html">Test Preparation</a>
+                    <a class="dropdown-item" href="first_child_scenario.html">First Child Scenario</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="gender_analysis.html">Gender Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="score_distribution.html">Score Distribution</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="heatmaps.html">Heatmaps</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <header>
+        <h1><i class="fa fa-chart-pie"></i> Heatmaps</h1>
+    </header>
+    <main>
+        <section id="heatmaps" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Correlation Heatmaps</h2>
+                </div>
+                <div class="card-body">
+                    <div class="heatmap">
+                        <img src="file:///C:/Users/LAKHAN/OneDrive/Pictures/hitmaps/df_styled.png" alt="Heatmap 1" class="heatmap-img">
+                        <p><strong>Heatmap 1:</strong> This heatmap shows the correlation between various factors in the dataset. Darker colors indicate stronger correlations. For example, we can see a strong correlation between reading scores and writing scores.</p>
+                    </div>
+                    <div class="heatmap">
+                        <img src="file:///C:/Users/LAKHAN/OneDrive/Pictures/hitmaps/WhatsApp Image 2024-07-26 at 2.24.28 PM.jpeg" alt="Heatmap 2" class="heatmap-img">
+                        <p><strong>Heatmap 2:</strong> This heatmap focuses on the correlations between demographic factors and math scores. Notice the significant correlations between parents' education levels and math scores.</p>
+                    </div>
+                    <div class="heatmap">
+                        <img src="file:///C:/Users/LAKHAN/OneDrive/Pictures/hitmaps/WhatsApp Image 2024-07-26 at 2.24.29 PM.jpeg" alt="Heatmap 3" class="heatmap-img">
+                        <p><strong>Heatmap 3:</strong> This heatmap illustrates the correlations between different types of scores. It reveals that math, reading, and writing scores are highly correlated, suggesting that students who perform well in one area tend to perform well in others.</p>
+                    </div>
+                    <div class="heatmap">
+                        <img src="file:///C:/Users/LAKHAN/OneDrive/Pictures/hitmaps/WhatsApp Image 2024-07-26 at 2.24.30 PM.jpeg" alt="Heatmap 4" class="heatmap-img">
+                        <p><strong>Heatmap 4:</strong> This heatmap shows the relationship between the number of siblings and student scores. It appears that having more siblings is negatively correlated with higher scores, indicating potential resource dilution.</p>
+                    </div>
+                    <div class="heatmap">
+                        <img src="file:///C:/Users/LAKHAN/OneDrive/Pictures/hitmaps/WhatsApp Image 2024-07-26 at 2.24.31 PM.jpeg" alt="Heatmap 5" class="heatmap-img">
+                        <p><strong>Heatmap 5:</strong> This heatmap highlights the correlations between weekly study hours and scores. Higher weekly study hours are positively correlated with better scores, emphasizing the importance of consistent study habits.</p>
+                    </div>
+                    <div class="heatmap">
+                        <img src="file:///C:/Users/LAKHAN/OneDrive/Pictures/hitmaps/WhatsApp Image 2024-07-26 at 2.24.32 PM.jpeg" alt="Heatmap 6" class="heatmap-img">
+                        <p><strong>Heatmap 6:</strong> This heatmap explores the impact of transportation means on scores. Students who walk or cycle to school tend to have slightly higher scores compared to those who use other transportation methods.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Student Score Analysis</p>
+    </footer>
+</body>
+</html>
